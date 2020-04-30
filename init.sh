@@ -3,6 +3,12 @@ clear
 
 # Where your config start here
 
+## Enable CDN on apt source
+cat >> /etc/apt/sources.list <<EOL 
+deb http://cdn-aws.deb.debian.org/debian/ sid main
+deb http://cdn-aws.deb.debian.org/debian/ buster main
+EOL
+
 ## Install common package
 apt update && apt install build-essential module-assistant dkms htop nload iftop ncdu knot-dnsutils tcpdump mtr sudo locales net-tools dnsutils wget curl rsync git jq unzip netcat socat ca-certificates apt-transport-https gnupg2 haveged
 source /etc/profile
