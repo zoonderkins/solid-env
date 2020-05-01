@@ -10,7 +10,7 @@ deb http://cdn-aws.deb.debian.org/debian/ buster main
 EOL
 
 ## Install common package
-apt update && apt install build-essential module-assistant dkms htop nload iftop ncdu knot-dnsutils tcpdump mtr sudo locales net-tools dnsutils wget curl rsync git jq unzip netcat socat ca-certificates apt-transport-https gnupg2 haveged
+apt update && apt install build-essential module-assistant dkms htop nload iftop ncdu knot-dnsutils tcpdump mtr sudo locales net-tools dnsutils wget curl rsync git jq unzip netcat socat ca-certificates apt-transport-https gnupg2 gnupg-agent haveged
 source /etc/profile
 systemctl enable --now haveged > /dev/null 2>&1
 
@@ -193,3 +193,29 @@ fi
 EOL
 
 source ~/.bashrc
+
+## Yggdrasil debian gpg
+gpg --fetch-keys https://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/key.txt
+gpg --export 569130E8CA20FBC4CB3FDE555898470A764B32C9 | sudo apt-key add -
+echo 'deb http://neilalexander.s3.dualstack.eu-west-2.amazonaws.com/deb/ debian yggdrasil' | sudo tee /etc/apt/sources.list.d/yggdrasil.list
+apt-get update
+
+## I2pd
+wget -q -O - https://repo.i2pd.xyz/.help/add_repo | sudo bash -s -
+apt-get update
+apt-get install i2pd
+
+## Install docker CE
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+apt -y update && apt install docker-ce docker-ce-cli containerd.io
+
+## Knot-resolver Debian
+echo 'deb http://download.opensuse.org/repositories/home:/CZ-NIC:/knot-resolver-latest/Debian_Next/ /' > /etc/apt/sources.list.d/home:CZ-NIC:knot-resolver-latest.list
+wget -nv https://download.opensuse.org/repositories/home:CZ-NIC:knot-resolver-latest/Debian_Next/Release.key -O Release.key
+apt-key add - < Release.key
+apt-get -y update && apt-get install knot-resolver
+
