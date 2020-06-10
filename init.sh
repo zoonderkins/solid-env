@@ -30,7 +30,9 @@ systemctl daemon-reload > /dev/null 2>&1
 rm -rf /etc/resolv.conf
 cat << EOF > /etc/resolv.conf
 nameserver 1.0.0.2
+nameserver 2606:4700:4700::1002
 nameserver 9.9.9.9
+nameserver 2620:fe::9
 EOF
 
 ## Enable Swap 1G 
