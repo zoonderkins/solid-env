@@ -12,8 +12,11 @@ EOL
 ## Install common package
 apt update && apt install build-essential module-assistant dkms htop nload iftop ncdu knot-dnsutils tcpdump mtr sudo locales net-tools dnsutils wget curl rsync git jq unzip netcat socat ca-certificates apt-transport-https gnupg2 gnupg-agent haveged
 ## apt search linux-headers 
-
-apt-get install --only-upgrade linux-compiler-gcc-9-x86 linux-headers-5.6.0-2-amd64 linux-headers-5.6.0-2-common
+uname -r
+hostnamectl
+lsb_release -a
+apt install linux-image-5.6.0-2-amd64 
+apt install linux-headers-5.6.0-2-amd64 linux-headers-5.6.0-2-common linux-compiler-gcc-9-x86 
 ## List current installed linux kernerl
 dpkg -l *linux-image*|grep ii
 
