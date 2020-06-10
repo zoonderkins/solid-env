@@ -11,6 +11,12 @@ EOL
 
 ## Install common package
 apt update && apt install build-essential module-assistant dkms htop nload iftop ncdu knot-dnsutils tcpdump mtr sudo locales net-tools dnsutils wget curl rsync git jq unzip netcat socat ca-certificates apt-transport-https gnupg2 gnupg-agent haveged
+## apt search linux-headers 
+
+apt-get install --only-upgrade linux-compiler-gcc-9-x86 linux-headers-5.6.0-2-amd64 linux-headers-5.6.0-2-common
+## List current installed linux kernerl
+dpkg -l *linux-image*|grep ii
+
 source /etc/profile
 systemctl enable --now haveged > /dev/null 2>&1
 
