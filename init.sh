@@ -15,9 +15,9 @@ apt update && apt install build-essential module-assistant dkms htop nload iftop
 uname -r
 hostnamectl
 lsb_release -a
-apt install linux-image-5.6.0-2-amd64 
+apt install linux-image-5.7.0-1-amd64
 ## apt install -t buster-backports linux-image-amd64 linux-headers-amd64
-apt install linux-headers-5.6.0-2-amd64 linux-headers-5.6.0-2-common linux-compiler-gcc-9-x86 
+apt install linux-headers-5.7.0-1-amd64 linux-headers-5.7.0-1-common linux-compiler-gcc-9-x86 
 ## List current installed linux kernerl
 dpkg -l *linux-image*|grep ii
 
